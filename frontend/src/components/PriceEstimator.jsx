@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useCurrency } from '../context/CurrencyContext'
+import { useSystemSettings } from '../context/SystemSettingsContext'
 import './PriceEstimator.css'
 
-const DISTRICT_VALUATION_DATA = {
+export const FALLBACK_DISTRICT_DATA = {
   Colombo: {
     basePerch: 3800000,
     growthRate: '8.5% YoY',
@@ -65,31 +66,44 @@ const DISTRICT_VALUATION_DATA = {
 
 export default function PriceEstimator({ onClose, onNavigate }) {
   const { formatPrice } = useCurrency()
-  const [district, setDistrict] = useState('Colombo')
-  const [zoneIndex, setZoneIndex] = useState(1)
+  const { settings } = useSystemSettings()
+
+  const valuationParams = settings?.valuation_parameters || {}
+  const districtDataMap = valuationParams.districts || FALLBACK_DISTRICT_DATA
+  const roadFactors = valuationParams.road_factors || { '20ft': 1.08, '15ft': 1.0, '10ft': 0.88 }
+  const constructionCosts = valuationParams.construction_sqft_costs || { modern: 8500, standard: 5500 }
+  const margins = valuationParams.estimation_margins || { min: 0.92, max: 1.08 }
+
+  const districtNames = Object.keys(districtDataMap)
+  const [district, setDistrict] = useState(districtNames[0] || 'Colombo')
+  const [zoneIndex, setZoneIndex] = useState(0)
   const [propertyType, setPropertyType] = useState('land') // 'land' | 'house'
   const [perches, setPerches] = useState(12)
   const [roadWidth, setRoadWidth] = useState('20ft') // '10ft' | '15ft' | '20ft'
   const [houseCondition, setHouseCondition] = useState('modern')
 
-  const districtData = DISTRICT_VALUATION_DATA[district] || DISTRICT_VALUATION_DATA.Colombo
-  const currentZone = districtData.zones[zoneIndex] || districtData.zones[0]
+  const districtData = districtDataMap[district] || districtDataMap[districtNames[0]] || FALLBACK_DISTRICT_DATA.Colombo
+  const zones = districtData.zones && districtData.zones.length > 0
+    ? districtData.zones
+    : [{ name: 'Central Urban Area', multiplier: 1.0, avgPerch: 'Market benchmark' }]
+  const currentZone = zones[zoneIndex] || zones[0]
 
   // Road factor
-  const roadFactor = roadWidth === '20ft' ? 1.08 : roadWidth === '15ft' ? 1.0 : 0.88
+  const roadFactor = roadFactors[roadWidth] ?? (roadWidth === '20ft' ? 1.08 : roadWidth === '15ft' ? 1.0 : 0.88)
 
   // Base per perch price
-  const estimatedPerPerch = Math.round(districtData.basePerch * currentZone.multiplier * roadFactor)
+  const estimatedPerPerch = Math.round((districtData.basePerch || 2000000) * (currentZone.multiplier || 1) * roadFactor)
   const landValue = estimatedPerPerch * perches
 
   // House construction replacement value
+  const sqftRate = houseCondition === 'modern' ? (constructionCosts.modern || 8500) : (constructionCosts.standard || 5500)
   const houseValue = propertyType === 'house'
-    ? perches * 100 * (houseCondition === 'modern' ? 8500 : 5500)
+    ? perches * 100 * sqftRate
     : 0
 
-  const totalMin = Math.round((landValue + houseValue) * 0.92)
+  const totalMin = Math.round((landValue + houseValue) * (margins.min || 0.92))
   const totalAvg = Math.round(landValue + houseValue)
-  const totalMax = Math.round((landValue + houseValue) * 1.08)
+  const totalMax = Math.round((landValue + houseValue) * (margins.max || 1.08))
 
   return (
     <div className="estimator-modal-backdrop" onClick={e => { if (e.target === e.currentTarget) onClose?.() }}>
@@ -124,7 +138,7 @@ export default function PriceEstimator({ onClose, onNavigate }) {
                     setZoneIndex(0)
                   }}
                 >
-                  {Object.keys(DISTRICT_VALUATION_DATA).map(d => (
+                  {districtNames.map(d => (
                     <option key={d} value={d}>{d} District</option>
                   ))}
                 </select>
@@ -137,7 +151,7 @@ export default function PriceEstimator({ onClose, onNavigate }) {
                   value={zoneIndex}
                   onChange={e => setZoneIndex(Number(e.target.value))}
                 >
-                  {districtData.zones.map((z, idx) => (
+                  {zones.map((z, idx) => (
                     <option key={idx} value={idx}>{z.name}</option>
                   ))}
                 </select>
@@ -200,7 +214,7 @@ export default function PriceEstimator({ onClose, onNavigate }) {
             </div>
 
             <div className="estimator-growth-banner">
-              <strong>📈 Capital Appreciation:</strong> Historical land prices in {district} have grown at ~{districtData.growthRate} over the past 3 years.
+              <strong>📈 Capital Appreciation:</strong> Historical land prices in {district} have grown at ~{districtData.growthRate || '8.5% YoY'} over the past 3 years.
             </div>
           </div>
 

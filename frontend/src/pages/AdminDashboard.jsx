@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import ReportViewerModal from '../components/ReportViewerModal'
+import AdminSystemPricingHub from '../components/AdminSystemPricingHub'
 import './AdminDashboard.css'
 
 const emptyFilters = { role: '', status: '', search: '' }
@@ -771,6 +772,8 @@ export default function AdminDashboard({ onNavigate }) {
             </div>
           ))}
         </section>
+
+        {isAdmin && <AdminSystemPricingHub />}
 
         <section className="admin-panel admin-reports-panel">
           <div className="admin-panel__head">

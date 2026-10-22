@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useLanguage } from '../context/LanguageContext'
+import { useSystemSettings } from '../context/SystemSettingsContext'
 import AiDescriptionGenerator from '../components/AiDescriptionGenerator'
 import PriceEstimator from '../components/PriceEstimator'
 import './SellerPage.css'
@@ -133,8 +134,9 @@ export default function SellerPage({ onNavigate }) {
   const [submitState, setSubmitState] = useState({ loading: false, message: '', error: '' })
   const [showAiModal, setShowAiModal] = useState(false)
   const [showEstimatorModal, setShowEstimatorModal] = useState(false)
-
-  const selectedPlan = listingPlans.find(plan => plan.id === form.listing_plan) || listingPlans[0]
+  const { settings } = useSystemSettings()
+  const activePlans = settings?.seller_packages?.listing_plans || listingPlans
+  const selectedPlan = activePlans.find(plan => plan.id === form.listing_plan) || activePlans[0]
 
   const setField = (key, value) => {
     setSubmitState({ loading: false, message: '', error: '' })
@@ -603,11 +605,11 @@ export default function SellerPage({ onNavigate }) {
                   <p>Small listing fees help us review seller details and keep buyer inquiries serious.</p>
                 </div>
                 <div className="seller-plan-grid">
-                  {listingPlans.map(plan => (
+                  {activePlans.map(plan => (
                     <label className={form.listing_plan === plan.id ? 'seller-plan seller-plan--active' : 'seller-plan'} key={plan.id}>
                       <input type="radio" name="listing_plan" value={plan.id} checked={form.listing_plan === plan.id} onChange={e => setField('listing_plan', e.target.value)} />
                       <strong>{plan.name}</strong>
-                      <span>Rs. {plan.price.toLocaleString()}</span>
+                      <span>Rs. {Number(plan.price).toLocaleString()}</span>
                       <em>{plan.text}</em>
                     </label>
                   ))}

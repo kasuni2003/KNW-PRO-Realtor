@@ -25,7 +25,7 @@ export default function Footer({ onNavigate }) {
             </p>
             <div className="footer__contact">
               <span>📞 +94 11 234 5678</span>
-              <span>✉️ KNWPROREALTOR@gmail.lk</span>
+              <span>✉️ knwprorealtor@gmail.lk</span>
               <span>📍 delkanda,Nugegoda, Sri Lanka</span>
             </div>
           </div>

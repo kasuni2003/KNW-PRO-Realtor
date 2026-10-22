@@ -11,9 +11,11 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SavedPropertyController;
 use App\Http\Controllers\SellerPropertyDraftController;
+use App\Http\Controllers\SystemSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/ping', fn () => response()->json(['status' => 'ok']));
+Route::get('/system/settings', [SystemSettingController::class, 'index']);
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -104,4 +106,7 @@ Route::prefix('admin')->group(function () {
     Route::patch('/reviews/{id}/approve', [ReviewController::class, 'approve']);
     Route::patch('/reviews/{id}/reject', [ReviewController::class, 'reject']);
     Route::delete('/reviews/{id}', [ReviewController::class, 'destroy']);
+    Route::get('/system/settings', [SystemSettingController::class, 'adminIndex']);
+    Route::post('/system/settings', [SystemSettingController::class, 'update']);
+    Route::post('/system/settings/reset', [SystemSettingController::class, 'reset']);
 });

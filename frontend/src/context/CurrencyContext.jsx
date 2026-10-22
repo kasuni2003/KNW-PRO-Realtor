@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { useSystemSettings } from './SystemSettingsContext'
 
 const CurrencyContext = createContext(null)
 
@@ -13,6 +14,9 @@ export const CURRENCY_RATES = {
 }
 
 export function CurrencyProvider({ children }) {
+  const { settings } = useSystemSettings()
+  const activeRates = { ...CURRENCY_RATES, ...(settings?.currency_rates || {}) }
+
   const [currency, setCurrency] = useState(() => {
     return window.localStorage.getItem('knw_currency') || 'LKR'
   })
@@ -23,17 +27,16 @@ export function CurrencyProvider({ children }) {
 
   const convertPrice = (lkrAmount) => {
     if (!lkrAmount) return 0
-    // Parse any numeric value from string (e.g. "Rs. 25,000,000" or "25M" or raw number)
     const num = typeof lkrAmount === 'number' 
       ? lkrAmount 
       : parseFloat(String(lkrAmount).replace(/[^0-9.]/g, '')) || 0
-    const config = CURRENCY_RATES[currency] || CURRENCY_RATES.LKR
+    const config = activeRates[currency] || activeRates.LKR
     return num * config.rate
   }
 
   const formatPrice = (lkrAmount) => {
     if (!lkrAmount && lkrAmount !== 0) return 'Price on Request'
-    const config = CURRENCY_RATES[currency] || CURRENCY_RATES.LKR
+    const config = activeRates[currency] || activeRates.LKR
     
     // Extract raw number
     let rawStr = String(lkrAmount).trim()
@@ -69,7 +72,7 @@ export function CurrencyProvider({ children }) {
   }
 
   return (
-    <CurrencyContext.Provider value={{ currency, setCurrency, currencies: CURRENCY_RATES, convertPrice, formatPrice }}>
+    <CurrencyContext.Provider value={{ currency, setCurrency, currencies: activeRates, convertPrice, formatPrice }}>
       {children}
     </CurrencyContext.Provider>
   )

@@ -119,6 +119,14 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PropertySeeder::class);
 
+        // ── 7. Seed Dynamic System Settings & Calculations ───────────────────
+        foreach (\App\Models\SystemSetting::getDefaultSettings() as $key => $val) {
+            \App\Models\SystemSetting::updateOrCreate(
+                ['key' => $key],
+                ['value' => $val, 'group' => 'calculations', 'description' => 'System calculation parameters and pricing']
+            );
+        }
+
         $this->command->info('✅ All demo users seeded successfully!');
         $this->command->table(
             ['Role', 'Email', 'Password', 'Status'],

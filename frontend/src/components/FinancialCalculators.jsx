@@ -1,36 +1,47 @@
 import { useState } from 'react'
 import { useCurrency } from '../context/CurrencyContext'
+import { useSystemSettings } from '../context/SystemSettingsContext'
 import './FinancialCalculators.css'
 
 export default function FinancialCalculators({ initialPrice = 25000000, onClose }) {
   const { currency, formatPrice } = useCurrency()
+  const { settings } = useSystemSettings()
   const [activeTab, setActiveTab] = useState('stampDuty') // 'stampDuty' | 'mortgage'
+
+  const legalSettings = settings?.legal_closing_fees || {}
+  const mortgageSettings = settings?.mortgage_benchmarks || {}
+
+  const stampThreshold = Number(legalSettings.stamp_duty_threshold ?? 100000)
+  const tier1Rate = Number(legalSettings.stamp_duty_tier1_rate ?? 3.0) / 100
+  const tier2Rate = Number(legalSettings.stamp_duty_tier2_rate ?? 4.0) / 100
+  const lawyerRate = Number(legalSettings.lawyer_notary_rate ?? 1.5) / 100
+  const registryRate = Number(legalSettings.land_registry_rate ?? 0.2) / 100
+  const registryCap = Number(legalSettings.land_registry_cap ?? 50000)
+  const titleSearchFee = Number(legalSettings.title_search_fee ?? 25000)
 
   // ── Stamp Duty State ──
   const [propertyPrice, setPropertyPrice] = useState(initialPrice)
   const [propertyType, setPropertyType] = useState('residential') // 'residential' | 'land' | 'commercial'
   const [buyerType, setBuyerType] = useState('local') // 'local' | 'foreign'
 
-  // Stamp Duty Math (Sri Lanka):
-  // 3% for the first Rs. 100,000 and 4% for the remainder
+  // Dynamic Stamp Duty Math:
   const calculateStampDuty = (price) => {
     if (price <= 0) return 0
-    if (price <= 100000) return price * 0.03
-    return 100000 * 0.03 + (price - 100000) * 0.04
+    if (price <= stampThreshold) return price * tier1Rate
+    return stampThreshold * tier1Rate + (price - stampThreshold) * tier2Rate
   }
 
   const stampDutyAmount = calculateStampDuty(propertyPrice)
-  const lawyerFee = propertyPrice * 0.015 // ~1.5% typical notary fee
-  const landRegistryFee = Math.min(propertyPrice * 0.002, 50000) // approx 0.2% max 50k
-  const titleSearchFee = 25000 // Average 30-year deed chain search
+  const lawyerFee = propertyPrice * lawyerRate
+  const landRegistryFee = Math.min(propertyPrice * registryRate, registryCap)
   const totalClosingCost = stampDutyAmount + lawyerFee + landRegistryFee + titleSearchFee
   const totalWithProperty = propertyPrice + totalClosingCost
 
   // ── Mortgage / Loan EMI State ──
   const [loanPrice, setLoanPrice] = useState(initialPrice)
-  const [downPaymentPercent, setDownPaymentPercent] = useState(20)
-  const [interestRate, setInterestRate] = useState(12.5) // Current SL commercial bank benchmark
-  const [tenureYears, setTenureYears] = useState(15)
+  const [downPaymentPercent, setDownPaymentPercent] = useState(Number(mortgageSettings.default_down_payment_pct ?? 20))
+  const [interestRate, setInterestRate] = useState(Number(mortgageSettings.benchmark_interest_rate ?? 12.5))
+  const [tenureYears, setTenureYears] = useState(Number(mortgageSettings.default_tenure_years ?? 15))
 
   const downPaymentAmount = loanPrice * (downPaymentPercent / 100)
   const loanPrincipal = loanPrice - downPaymentAmount
@@ -46,8 +57,7 @@ export default function FinancialCalculators({ initialPrice = 25000000, onClose 
   const totalRepayment = monthlyEMI * totalMonths
   const totalInterest = totalRepayment - loanPrincipal
 
-  // Bank benchmark rates in Sri Lanka
-  const bankBenchmarks = [
+  const bankBenchmarks = mortgageSettings.bank_rates || [
     { bank: 'Commercial Bank', rate: '11.75% - 12.50%', tag: 'Competitive' },
     { bank: 'Hatton National Bank (HNB)', rate: '12.00% - 13.00%', tag: 'Fast Approval' },
     { bank: 'Sampath Bank', rate: '12.25% - 13.25%', tag: 'Flexible Terms' },
@@ -150,9 +160,9 @@ export default function FinancialCalculators({ initialPrice = 25000000, onClose 
                 <div className="calc-info-card">
                   <h4>💡 Sri Lanka Legal Framework:</h4>
                   <ul>
-                    <li>Stamp Duty: 3% on first Rs. 100,000 + 4% on remaining balance.</li>
-                    <li>Notary Fee: Standard professional bar council rate ~1% to 1.5%.</li>
-                    <li>Land Registry & Folio Search: Required for 30-year deed chain clear title verification.</li>
+                    <li>Stamp Duty: {legalSettings.stamp_duty_tier1_rate ?? 3}% on first Rs. {stampThreshold.toLocaleString()} + {legalSettings.stamp_duty_tier2_rate ?? 4}% on remaining balance.</li>
+                    <li>Notary Fee: Standard professional conveyance rate ~{legalSettings.lawyer_notary_rate ?? 1.5}%.</li>
+                    <li>Land Registry & Folio Search: {legalSettings.land_registry_rate ?? 0.2}% (capped at Rs. {registryCap.toLocaleString()}) for 30-year deed chain clear title verification.</li>
                   </ul>
                 </div>
               </div>
@@ -161,15 +171,15 @@ export default function FinancialCalculators({ initialPrice = 25000000, onClose 
               <div className="calc-results">
                 <h4>Closing Cost Breakdown</h4>
                 <div className="calc-breakdown-item">
-                  <span>Provincial Council Stamp Duty (3% - 4%)</span>
+                  <span>Provincial Council Stamp Duty</span>
                   <strong>{formatPrice(stampDutyAmount)}</strong>
                 </div>
                 <div className="calc-breakdown-item">
-                  <span>Notary / Conveyancing Lawyer (~1.5%)</span>
+                  <span>Notary / Conveyancing Lawyer (~{legalSettings.lawyer_notary_rate ?? 1.5}%)</span>
                   <strong>{formatPrice(lawyerFee)}</strong>
                 </div>
                 <div className="calc-breakdown-item">
-                  <span>Land Registry Registration Fee (~0.2%)</span>
+                  <span>Land Registry Registration Fee (~{legalSettings.land_registry_rate ?? 0.2}%)</span>
                   <strong>{formatPrice(landRegistryFee)}</strong>
                 </div>
                 <div className="calc-breakdown-item">
@@ -232,7 +242,7 @@ export default function FinancialCalculators({ initialPrice = 25000000, onClose 
                   <input
                     type="range"
                     min="8"
-                    max="18"
+                    max="22"
                     step="0.25"
                     value={interestRate}
                     onChange={e => setInterestRate(Number(e.target.value))}
@@ -246,22 +256,24 @@ export default function FinancialCalculators({ initialPrice = 25000000, onClose 
                   <input
                     type="range"
                     min="5"
-                    max="25"
+                    max="30"
                     step="1"
                     value={tenureYears}
                     onChange={e => setTenureYears(Number(e.target.value))}
                   />
                 </div>
 
-                {/* Bank benchmarks */}
+                {/* Bank Reference Table */}
                 <div className="calc-banks-box">
-                  <h5>Current Sri Lankan Bank Interest Benchmarks:</h5>
+                  <h4>Live Sri Lanka Bank Benchmarks:</h4>
                   <div className="calc-banks-list">
-                    {bankBenchmarks.map((b, i) => (
-                      <div key={i} className="calc-bank-item">
-                        <span>{b.bank}</span>
-                        <strong>{b.rate}</strong>
-                        <em>{b.tag}</em>
+                    {bankBenchmarks.map(b => (
+                      <div key={b.bank} className="calc-bank-item">
+                        <div>
+                          <strong>{b.bank}</strong>
+                          <span className="calc-bank-tag">{b.tag}</span>
+                        </div>
+                        <span className="calc-bank-rate">{b.rate}</span>
                       </div>
                     ))}
                   </div>
@@ -270,45 +282,45 @@ export default function FinancialCalculators({ initialPrice = 25000000, onClose 
 
               {/* Mortgage Results */}
               <div className="calc-results">
-                <h4>Loan Summary</h4>
-                <div className="calc-emi-hero">
-                  <span>Estimated Monthly Payment</span>
-                  <div className="calc-emi-amount">{formatPrice(monthlyEMI)}</div>
-                  <small>per month for {tenureYears} years ({totalMonths} installments)</small>
+                <h4>Loan Repayment Summary</h4>
+                <div className="calc-emi-card">
+                  <span>Estimated Monthly Payment (EMI)</span>
+                  <div className="calc-emi-val">{formatPrice(Math.round(monthlyEMI))}<small>/mo</small></div>
+                  <p>Based on {tenureYears} years fixed amortisation schedule</p>
                 </div>
 
                 <div className="calc-breakdown-item">
-                  <span>Loan Principal Amount</span>
+                  <span>Principal Loan Borrowed</span>
                   <strong>{formatPrice(loanPrincipal)}</strong>
                 </div>
                 <div className="calc-breakdown-item">
-                  <span>Down Payment ({downPaymentPercent}%)</span>
-                  <strong>{formatPrice(downPaymentAmount)}</strong>
+                  <span>Total Interest Payable</span>
+                  <strong style={{ color: '#dc2626' }}>{formatPrice(Math.round(totalInterest))}</strong>
                 </div>
                 <div className="calc-breakdown-item">
-                  <span>Total Interest Payable</span>
-                  <strong style={{ color: '#D97706' }}>{formatPrice(totalInterest)}</strong>
-                </div>
-                <div className="calc-breakdown-item highlight">
-                  <span>Total Amount Repaid</span>
-                  <strong>{formatPrice(totalRepayment)}</strong>
+                  <span>Total Amount to Pay</span>
+                  <strong>{formatPrice(Math.round(totalRepayment))}</strong>
                 </div>
 
-                <div className="calc-bar-wrap">
-                  <div
-                    className="calc-bar-principal"
-                    style={{ width: `${(loanPrincipal / (totalRepayment || 1)) * 100}%` }}
-                    title="Principal"
-                  />
-                  <div
-                    className="calc-bar-interest"
-                    style={{ width: `${(totalInterest / (totalRepayment || 1)) * 100}%` }}
-                    title="Interest"
-                  />
-                </div>
-                <div className="calc-bar-legend">
-                  <span><span className="dot dot-principal" /> Principal ({((loanPrincipal / (totalRepayment || 1)) * 100).toFixed(0)}%)</span>
-                  <span><span className="dot dot-interest" /> Interest ({((totalInterest / (totalRepayment || 1)) * 100).toFixed(0)}%)</span>
+                <div className="calc-divider" />
+
+                <div className="calc-loan-visual">
+                  <div className="calc-bar-wrap">
+                    <div
+                      className="calc-bar principal"
+                      style={{ width: `${(loanPrincipal / (totalRepayment || 1)) * 100}%` }}
+                      title="Principal"
+                    />
+                    <div
+                      className="calc-bar interest"
+                      style={{ width: `${(totalInterest / (totalRepayment || 1)) * 100}%` }}
+                      title="Interest"
+                    />
+                  </div>
+                  <div className="calc-bar-legend">
+                    <span className="legend-p">■ Principal: {((loanPrincipal / (totalRepayment || 1)) * 100).toFixed(0)}%</span>
+                    <span className="legend-i">■ Interest: {((totalInterest / (totalRepayment || 1)) * 100).toFixed(0)}%</span>
+                  </div>
                 </div>
               </div>
             </div>

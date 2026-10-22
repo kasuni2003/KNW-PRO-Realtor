@@ -5,15 +5,18 @@ import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { LanguageProvider } from './context/LanguageContext.jsx'
 import { CurrencyProvider } from './context/CurrencyContext.jsx'
+import { SystemSettingsProvider } from './context/SystemSettingsContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <LanguageProvider>
-      <AuthProvider>
-        <CurrencyProvider>
-          <App />
-        </CurrencyProvider>
-      </AuthProvider>
-    </LanguageProvider>
+    <SystemSettingsProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <CurrencyProvider>
+            <App />
+          </CurrencyProvider>
+        </AuthProvider>
+      </LanguageProvider>
+    </SystemSettingsProvider>
   </StrictMode>,
 )
