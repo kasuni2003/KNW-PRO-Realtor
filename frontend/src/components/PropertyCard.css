@@ -1,0 +1,212 @@
+.prop-card {
+  background: #fff;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+}
+.prop-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+  border-color: var(--green-100);
+}
+
+/* Thumb */
+.prop-card__thumb {
+  height: 160px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.prop-card__emoji { font-size: 52px; }
+.prop-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prop-card__badge {
+  position: absolute; top: 12px; left: 12px;
+}
+.prop-card__flag {
+  position: absolute; top: 12px; right: 42px;
+  font-size: 18px; line-height: 1;
+}
+.prop-card__top-actions {
+  position: absolute; top: 8px; right: 10px;
+  display: flex; align-items: center; gap: 6px;
+  z-index: 2;
+}
+.prop-card__compare-label {
+  display: flex; align-items: center; gap: 4px;
+  background: rgba(15, 23, 42, 0.75); color: #fff;
+  font-size: 11px; font-weight: 600;
+  padding: 4px 8px; border-radius: 12px;
+  cursor: pointer; backdrop-filter: blur(4px);
+}
+.prop-card__compare-label input {
+  accent-color: #10b981; cursor: pointer;
+}
+.prop-card__save {
+  background: rgba(255,255,255,0.85); border: none;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray-500); transition: color 0.15s, background 0.15s;
+  backdrop-filter: blur(4px); cursor: pointer;
+}
+.prop-card__save:hover { color: #E23A3A; background: #fff; }
+
+/* Body */
+.prop-card__body { padding: 14px 16px 10px; flex: 1; }
+.prop-card__type {
+  font-size: 10px; font-weight: 600; color: var(--green-700);
+  text-transform: uppercase; letter-spacing: 0.8px;
+}
+.prop-card__title {
+  font-size: 14px; font-weight: 600; color: var(--gray-900);
+  margin: 5px 0 6px; line-height: 1.35;
+}
+.prop-card__location {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 12px; color: var(--gray-500); margin-bottom: 12px;
+}
+.prop-card__price { margin-bottom: 10px; }
+.prop-card__price-lkr {
+  display: block; font-size: 17px; font-weight: 700;
+  color: var(--green-700); letter-spacing: -0.3px;
+}
+.prop-card__price-usd {
+  font-size: 11px; color: var(--gray-500);
+}
+.prop-card__meta {
+  display: flex; gap: 12px;
+  padding-top: 10px; border-top: 1px solid var(--gray-100);
+}
+.prop-card__meta-item {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11px; color: var(--gray-500);
+}
+
+/* Deed Verified Badge */
+.prop-card__deed-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #059669;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 4;
+}
+
+.prop-card__deed-badge--locked {
+  background: rgba(15, 23, 42, 0.7);
+  color: #e2e8f0;
+  backdrop-filter: blur(2px);
+}
+
+.prop-card__perch-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #065f46;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-top: 4px;
+}
+
+.prop-card__expressway-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e40af;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Footer */
+.prop-card__footer {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--gray-100);
+}
+
+.prop-card__footer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.prop-card__cta, .prop-card__contact {
+  padding: 10px; text-align: center;
+  font-size: 13px; font-weight: 500;
+  transition: background 0.12s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.prop-card__cta {
+  color: var(--green-700); border-right: 1px solid var(--gray-100);
+}
+.prop-card__cta:hover { background: var(--green-50); }
+.prop-card__contact { color: var(--gray-600); }
+.prop-card__contact:hover { background: var(--gray-50); }
+
+.prop-card__whatsapp {
+  width: 100%;
+  padding: 8px 12px;
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-top: 1px solid #dcfce7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.prop-card__whatsapp:hover {
+  background: #25D366;
+  color: #ffffff;
+}
+
+.prop-card__whatsapp--locked {
+  background: #f8fafc;
+  color: #64748b;
+  border-top: 1px solid #f1f5f9;
+}
+
+.prop-card__whatsapp--locked:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.featured-section { padding: 64px 0; background: var(--gray-50); }
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .featured-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,454 @@
+.marketplace-hero {
+  background: linear-gradient(135deg, #0f6e56 0%, #153f5f 100%);
+}
+
+.marketplace-body,
+.property-detail-body,
+.seller-dashboard-body {
+  padding: 38px 0 70px;
+}
+
+.marketplace-filters {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 18px;
+  padding: 16px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: white;
+}
+
+.marketplace-filters label,
+.property-inquiry-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-700);
+}
+
+.marketplace-filters input,
+.marketplace-filters select,
+.property-inquiry-form input,
+.property-inquiry-form select,
+.property-inquiry-form textarea {
+  width: 100%;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 11px 12px;
+  font: inherit;
+}
+
+.marketplace-filters button,
+.seller-inquiry-actions button {
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 11px 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.marketplace-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 18px 0;
+  color: var(--gray-600);
+}
+
+.marketplace-toolbar strong {
+  color: var(--gray-900);
+}
+
+.marketplace-empty,
+.marketplace-loading {
+  padding: 70px 0;
+}
+
+.property-detail-hero {
+  background: #103f5b;
+  color: white;
+  padding: 54px 0;
+}
+
+.property-detail-hero__inner,
+.property-detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 28px;
+}
+
+.property-detail-hero h1 {
+  margin: 14px 0 8px;
+  font-size: clamp(34px, 5vw, 58px);
+}
+
+.marketplace-kicker {
+  display: inline-flex;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.15);
+  font-weight: 800;
+}
+
+.property-price-panel,
+.property-contact-panel,
+.marketplace-panel {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.property-price-panel {
+  color: var(--gray-900);
+  align-self: end;
+}
+
+.property-price-panel span,
+.property-price-panel em,
+.property-seller-card span {
+  display: block;
+  color: var(--gray-500);
+  font-style: normal;
+}
+
+.property-price-panel strong {
+  display: block;
+  font-size: 28px;
+  margin: 8px 0;
+}
+
+.property-save-btn {
+  width: 100%;
+  border: 1px solid var(--green-500);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--green-700);
+  font-weight: 800;
+  padding: 10px 12px;
+  margin-top: 12px;
+}
+
+.property-save-btn--active {
+  background: var(--green-50);
+}
+
+.property-photo-stage {
+  min-height: 340px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #e1f5ee, #e6f1fb);
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  font-weight: 900;
+  color: #0f6e56;
+  overflow: hidden;
+}
+
+.property-photo-stage img,
+.property-gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.property-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.property-gallery-grid img {
+  height: 120px;
+  border-radius: 8px;
+}
+
+.property-info-grid,
+.seller-dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.property-info-grid article,
+.seller-dash-stats article {
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+.property-info-grid span,
+.seller-dash-stats span {
+  display: block;
+  color: var(--gray-500);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.property-info-grid strong,
+.seller-dash-stats strong {
+  display: block;
+  margin-top: 6px;
+  color: var(--gray-900);
+}
+
+.property-detail-section,
+.property-map-panel {
+  margin-top: 18px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: white;
+  padding: 20px;
+}
+
+/* Certified Title Inspection Box */
+.certified-title-box {
+  margin-top: 18px;
+  border: 2px solid #10b981;
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+}
+
+.certified-title-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #d1fae5;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.certified-shield-icon {
+  font-size: 32px;
+}
+
+.certified-title-header h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.15rem;
+  color: #065f46;
+  font-weight: 800;
+}
+
+.certified-title-header p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #047857;
+}
+
+.certified-status-pill {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  background: #059669;
+  padding: 6px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+}
+
+.certified-title-checklist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.certified-item {
+  display: flex;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.certified-item .check-mark {
+  color: #059669;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.certified-item strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #064e3b;
+  margin-bottom: 2px;
+}
+
+.certified-item p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.certified-locked-prompt {
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.certified-locked-prompt p {
+  margin: 0 0 10px 0;
+  font-size: 0.88rem;
+  color: #475569;
+}
+
+.property-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.property-tag-row span,
+.marketplace-status {
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #e1f5ee;
+  color: #0f6e56;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.property-map-panel {
+  min-height: 170px;
+  background: repeating-linear-gradient(45deg, #f8fafc, #f8fafc 12px, #eef2f7 12px, #eef2f7 24px);
+}
+
+.property-map-panel iframe {
+  width: 100%;
+  min-height: 260px;
+  border: 0;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.property-map-panel a {
+  display: inline-flex;
+  margin-top: 12px;
+  color: var(--green-700);
+  font-weight: 800;
+}
+
+.property-contact-panel {
+  position: sticky;
+  top: 86px;
+  align-self: start;
+}
+
+.property-seller-card {
+  border-bottom: 1px solid var(--gray-200);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.property-inquiry-form {
+  display: grid;
+  gap: 12px;
+}
+
+.property-review-form {
+  border-top: 1px solid var(--gray-200);
+  margin-top: 18px;
+  padding-top: 18px;
+}
+
+.property-review-list {
+  display: grid;
+  gap: 10px;
+}
+
+.property-review-list article {
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.property-review-list span,
+.property-review-list p {
+  display: block;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+
+.marketplace-alert {
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #e1f5ee;
+  color: #0f6e56;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.marketplace-alert--error {
+  background: #fbeaf0;
+  color: #993556;
+}
+
+.marketplace-panel {
+  margin-top: 18px;
+}
+
+.marketplace-panel__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.seller-table {
+  display: grid;
+  gap: 10px;
+}
+
+.seller-table article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.seller-table span,
+.seller-table p,
+.seller-table em {
+  display: block;
+  color: var(--gray-500);
+  margin-top: 4px;
+}
+
+.seller-inquiry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .marketplace-filters,
+  .property-detail-hero__inner,
+  .property-detail-body,
+  .property-info-grid,
+  .property-gallery-grid,
+  .seller-dash-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .property-contact-panel {
+    position: static;
+  }
+}

@@ -1,0 +1,431 @@
+/* Buyer & Investor Dashboard Styles */
+.buyer-dashboard-body {
+  padding-bottom: 60px;
+}
+
+.buyer-hero {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
+}
+
+.buyer-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.buyer-stat-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.buyer-stat-icon {
+  font-size: 28px;
+}
+
+.buyer-stat-info span {
+  display: block;
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.buyer-stat-info strong {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* Tabs Navigation */
+.buyer-tabs-nav {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.buyer-tab-btn {
+  padding: 10px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: #64748b;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: -2px;
+}
+
+.buyer-tab-btn:hover {
+  color: #059669;
+}
+
+.buyer-tab-btn--active {
+  color: #059669;
+  border-bottom-color: #059669;
+}
+
+.buyer-tab-badge {
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+}
+
+.buyer-tab-btn--active .buyer-tab-badge {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* Saved Properties Grid */
+.buyer-saved-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.buyer-saved-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.buyer-saved-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #e2e8f0;
+}
+
+.buyer-saved-card-body {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.buyer-saved-card-body h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.buyer-saved-card-body p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0 0 10px 0;
+}
+
+.buyer-saved-price {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #059669;
+  margin-bottom: 14px;
+}
+
+.buyer-saved-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 12px;
+}
+
+/* Table Cards */
+.buyer-item-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.buyer-item-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.buyer-item-left h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.buyer-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: #64748b;
+  flex-wrap: wrap;
+}
+
+.buyer-item-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-video-meeting {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-video-meeting:hover {
+  background: #1d4ed8;
+}
+
+.buyer-empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+}
+
+.buyer-empty-state span {
+  font-size: 42px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.buyer-empty-state h3 {
+  font-size: 1.15rem;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.buyer-empty-state p {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin: 0 0 18px 0;
+}
+
+/* Reviews Section */
+.buyer-reviews-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buyer-reviews-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: #ffffff;
+  padding: 18px 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.buyer-review-form-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.review-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.review-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.review-form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.review-form-group input,
+.review-form-group select,
+.review-form-group textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.review-form-group input:focus,
+.review-form-group select:focus,
+.review-form-group textarea:focus {
+  outline: none;
+  border-color: #059669;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
+}
+
+.star-rating-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.star-select-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: transform 0.1s ease, color 0.1s ease;
+}
+
+.star-select-btn:hover {
+  transform: scale(1.15);
+}
+
+.star-select-btn.star-active {
+  color: #f59e0b;
+}
+
+.star-count-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  margin-left: 8px;
+}
+
+.buyer-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buyer-review-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.buyer-review-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.buyer-review-stars {
+  color: #f59e0b;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.buyer-review-score {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.buyer-review-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.buyer-review-body {
+  font-size: 0.9rem;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+}
+
+.buyer-review-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #64748b;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 10px;
+}
+
+.buyer-review-note {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #fef2f2;
+  border-left: 3px solid #ef4444;
+  font-size: 0.82rem;
+  color: #991b1b;
+  border-radius: 4px;
+}
+
+/* Status pills for reviews */
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+}
+
+.status-approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}

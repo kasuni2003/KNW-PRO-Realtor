@@ -1,0 +1,19 @@
+.featured-section {
+  padding: 64px 0;
+  background: var(--gray-50);
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+  .featured-section {
+    padding: 40px 0;
+  }
+}

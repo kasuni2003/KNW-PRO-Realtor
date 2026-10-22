@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNW PRO Realtor - Industrial Project Defense Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+    .slide {
+      display: none;
+      min-height: 85vh;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .slide.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.995); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+  <!-- Top Navigation Bar -->
+  <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center font-black text-slate-950 text-sm shadow-lg shadow-amber-500/20">
+        K
+      </div>
+      <div>
+        <h1 class="text-sm font-bold tracking-tight text-white flex items-center gap-2">
+          KNW PRO REALTOR
+          <span class="text-[10px] font-semibold bg-emerald-950 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full">Defense Deck</span>
+        </h1>
+        <p class="text-[11px] text-slate-400">LNBTI • IT3901 Industrial Training Project</p>
+      </div>
+    </div>
+
+    <!-- Controls & Slide Counter -->
+    <div class="flex items-center gap-4">
+      <div class="text-xs font-medium text-slate-300 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-full flex items-center gap-2">
+        <span>Slide</span>
+        <span id="currentSlideNum" class="text-amber-400 font-bold text-sm">01</span>
+        <span class="text-slate-500">/</span>
+        <span id="totalSlidesNum" class="text-slate-400">15</span>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <button id="prevBtn" onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 text-xs font-semibold transition border border-slate-700 flex items-center gap-1">
+          ◀ Prev
+        </button>
+        <button id="nextBtn" onclick="nextSlide()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 active:scale-95 text-slate-950 text-xs font-bold transition shadow-md shadow-amber-600/20 flex items-center gap-1">
+          Next ▶
+        </button>
+      </div>
+
+      <button onclick="toggleNotes()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs font-medium text-slate-300 border border-slate-800 transition">
+        🎙️ Speaker Notes
+      </button>
+      <button onclick="toggleFullScreen()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-xs text-slate-300 border border-slate-800 transition" title="Toggle Fullscreen">
+        ⛶
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide Stage -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-6 md:p-10 flex flex-col justify-center">
+
+    <!-- SLIDE 1: Title Slide -->
+    <div class="slide active flex-col justify-center items-center text-center py-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold tracking-wide uppercase mb-6">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        Higher Diploma in Software Engineering • Final Defense
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mb-4">
+        KNW PRO <span class="bg-gradient-to-r from-amber-400 via-amber-300 to-emerald-400 bg-clip-text text-transparent">REALTOR</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 max-w-3xl font-light mb-10 leading-relaxed">
+        Design & Implementation of a Digital Property Trading, Title Deed Verification & Legal Advisory Platform
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl w-full text-left bg-slate-900/80 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur">
+        <div class="space-y-1.5 border-b md:border-b-0 md:border-r border-slate-800 pb-4 md:pb-0 md:pr-6">
+          <p class="text-[11px] font-semibold tracking-wider text-amber-400 uppercase">Candidate Details</p>
+          <p class="text-base font-bold text-white">[Student's Full Name]</p>
+          <p class="text-xs text-slate-400">Reg No: [DSE/2024/001]</p>
+          <p class="text-xs text-slate-400">Lanka Nippon BizTech Institute (LNBTI)</p>
+        </div>
+        <div class="space-y-1.5 md:pl-6">
+          <p class="text-[11px] font-semibold tracking-wider text-emerald-400 uppercase">Host Organization</p>
+          <p class="text-base font-bold text-white">KNW PRO Realtor (Private) Limited</p>
+          <p class="text-xs text-slate-400">IT & Digital Systems Division, Colombo</p>
+          <p class="text-xs text-slate-400">Training Period: May 4, 2026 – October 22, 2026</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Agenda -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">Overview</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Presentation Roadmap & Agenda</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition">
+          <div class="text-emerald-400 font-bold text-sm mb-2">01. Context & Motivation</div>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• Host Enterprise: KNW PRO Realtor (Pvt) Ltd Profile</li>
+            <li>• Sri Lankan Real Estate Bottlenecks & Deed Insecurity</li>
+            <li>• Project Motivation & Core Engineering Objectives</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 transition">
+          <div class="text-amber-400 font-bold text-sm mb-2">02. Architectural Design</div>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• Decoupled 3-Tier Client-Server Architecture</li>
+            <li>• Frontend: React 18, Vite, Context State Management</li>
+            <li>• Backend: PHP 8.4, Laravel 13 REST API & MySQL 3NF</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-blue-500/40 transition">
+          <div class="text-blue-400 font-bold text-sm mb-2">03. Key Innovations & Modules</div>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• Unified Single-Account Dynamic Role Switcher</li>
+            <li>• 5-Step Property Intake Pipeline & Valuation Estimator</li>
+            <li>• LegalTech Deed Review & Lawyer Scheduling</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-purple-500/40 transition">
+          <div class="text-purple-400 font-bold text-sm mb-2">04. Engineering & Evaluation</div>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• Agile Scrum Rituals & GitFlow Version Control</li>
+            <li>• Security Hardening (Bcrypt, Private Vault, RBAC)</li>
+            <li>• Critical Problems Solved, Learnings & Future Roadmap</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: Host Organization -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">Host Enterprise</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">KNW PRO Realtor (Private) Limited</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <h3 class="text-base font-bold text-amber-400">Corporate Profile & Operations</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Headquartered in Colombo, KNW PRO Realtor is a premier real estate brokerage, property consultancy, and land sales enterprise operating across Western, Central, and Southern Sri Lanka.
+          </p>
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+              <p class="text-[11px] text-slate-400 font-medium">Core Divisions</p>
+              <p class="text-xs font-bold text-white mt-1">Brokerage, Conveyancing, Property Tech</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800">
+              <p class="text-[11px] text-slate-400 font-medium">Headquarters</p>
+              <p class="text-xs font-bold text-white mt-1">Colombo, Sri Lanka</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <h3 class="text-base font-bold text-emerald-400">IT & Digital Systems Division (Placement)</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Established in-house to pioneer the modernization of Sri Lankan real estate transactions through automated valuation, legal clearance workflows, and unified client identity portals.
+          </p>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Trainee Role:</strong> Software Engineering Intern across full-stack modules.</li>
+            <li>• <strong class="text-white">Methodology:</strong> Agile Scrum (2-week sprint cadences, daily standups).</li>
+            <li>• <strong class="text-white">Supervision:</strong> Lead Software Engineer / IT Systems Manager.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Problem Statement -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-red-400 tracking-wider uppercase mb-1">Problem Statement</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Sri Lankan Property Market Vulnerabilities</h2>
+      <div class="space-y-4">
+        <div class="p-5 rounded-2xl bg-red-950/20 border border-red-800/40 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-red-900/40 text-red-400 flex items-center justify-center font-bold text-lg flex-shrink-0">
+            ⚠️
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-red-300">1. Rampant Title Deed Fraud & Bogus Listings</h3>
+            <p class="text-xs text-slate-300 mt-1">Unregistered middlemen post unverified properties. Buyers risk life savings on properties burdened by undisclosed encumbrances, defective partition deeds, or local council boundary violations.</p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-amber-950/20 border border-amber-800/40 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-900/40 text-amber-400 flex items-center justify-center font-bold text-lg flex-shrink-0">
+            ⚖️
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-amber-300">2. Absence of Pre-Listing Legal Screening</h3>
+            <p class="text-xs text-slate-300 mt-1">Traditional portals act as passive bulletin boards. Real estate attorneys are only contacted after purchase disputes arise, causing months of costly litigation.</p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-blue-950/20 border border-blue-800/40 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-blue-900/40 text-blue-400 flex items-center justify-center font-bold text-lg flex-shrink-0">
+            👥
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-blue-300">3. Rigid Multi-Account Registration Friction</h3>
+            <p class="text-xs text-slate-300 mt-1">Conventional web architectures tie users permanently to a single role. A registered buyer wishing to sell property is blocked by unique email constraints, forcing separate accounts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: The Solution -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">The Solution</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">KNW PRO Realtor Platform Architecture</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/40 transition">
+          <div class="text-emerald-400 text-lg mb-2">🔄</div>
+          <h3 class="text-sm font-bold text-white mb-2">Unified Single Account</h3>
+          <p class="text-xs text-slate-300">Single credential for life. Dynamic role switching between Buyer, Seller, and Lawyer modes with zero session drop-off.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-amber-500/40 transition">
+          <div class="text-amber-400 text-lg mb-2">🛡️</div>
+          <h3 class="text-sm font-bold text-white mb-2">Verified Deed Guarantee</h3>
+          <p class="text-xs text-slate-300">Title deeds audited by licensed attorneys-at-law. Properties receive the 'KNW Certified Deed Verified' badge.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-blue-500/40 transition">
+          <div class="text-blue-400 text-lg mb-2">📝</div>
+          <h3 class="text-sm font-bold text-white mb-2">5-Step Intake & Estimator</h3>
+          <p class="text-xs text-slate-300">Interactive intake wizard with live price estimators, mortgage calculators, and multipart gallery uploads.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-purple-500/40 transition">
+          <div class="text-purple-400 text-lg mb-2">📅</div>
+          <h3 class="text-sm font-bold text-white mb-2">LegalTech Scheduling</h3>
+          <p class="text-xs text-slate-300">Video consultation booking with real estate attorneys, generating automated RFC-compliant iCalendar (.ics) files.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-emerald-500/40 transition">
+          <div class="text-emerald-400 text-lg mb-2">📄</div>
+          <h3 class="text-sm font-bold text-white mb-2">Buyer Dossier & Visits</h3>
+          <p class="text-xs text-slate-300">Personal property notes, downloadable dossiers, and physical site visit scheduling with automated notifications.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 hover:border-amber-500/40 transition">
+          <div class="text-amber-400 text-lg mb-2">💳</div>
+          <h3 class="text-sm font-bold text-white mb-2">PayHere & Admin Audit</h3>
+          <p class="text-xs text-slate-300">Integrated PayHere gateway, bank deposit slip verification queue, and administrative moderation dashboard.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: System Architecture -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-blue-400 tracking-wider uppercase mb-1">Architecture</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Decoupled 3-Tier Client-Server Architecture</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-blue-500/30">
+          <div class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-2">Tier 1: Frontend SPA</div>
+          <h3 class="text-base font-bold text-white mb-3">React 18 & Vite</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• Fast Single Page Application (SPA)</li>
+            <li>• Reactive Context State Management</li>
+            <li>• Modular CSS3 design system</li>
+            <li>• Axios asynchronous HTTP client</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-emerald-500/30">
+          <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">Tier 2: Server API</div>
+          <h3 class="text-base font-bold text-white mb-3">PHP 8.4 & Laravel 13</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• RESTful API JSON controllers</li>
+            <li>• FormRequest validation pipeline</li>
+            <li>• Bcrypt password hashing (12 rounds)</li>
+            <li>• Private storage disk for deeds & NIC</li>
+          </ul>
+        </div>
+        <div class="p-6 rounded-2xl bg-slate-900/80 border border-amber-500/30">
+          <div class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Tier 3: Database</div>
+          <h3 class="text-base font-bold text-white mb-3">MySQL 8.0 (3NF)</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• Normalized to 3rd Normal Form</li>
+            <li>• Eloquent ORM active records</li>
+            <li>• Idempotent database migrations</li>
+            <li>• Spatial & composite indexing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Frontend Architecture -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-blue-400 tracking-wider uppercase mb-1">Frontend Engineering</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">React 18 State Architecture</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider">Reactive Context Providers</h3>
+          <div class="space-y-3">
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <span class="text-xs font-bold text-white">AuthContext</span>
+              <p class="text-xs text-slate-300 mt-1">Manages tokens, user capabilities, and dynamic active role switching (activeRole, switchRole).</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <span class="text-xs font-bold text-white">LanguageContext (i18n)</span>
+              <p class="text-xs text-slate-300 mt-1">Trilingual internationalization supporting English, Sinhala, and Tamil translations.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <span class="text-xs font-bold text-white">CurrencyContext</span>
+              <p class="text-xs text-slate-300 mt-1">Dynamic real-time price conversion between LKR, USD, EUR, and GBP.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Component Highlights</h3>
+          <ul class="text-xs text-slate-300 space-y-3">
+            <li>• <strong class="text-white">Debounced Marketplace Search:</strong> 400ms debounce hook preventing server flood during typing.</li>
+            <li>• <strong class="text-white">Form Wizard State Recovery:</strong> Centralized reducer with sessionStorage caching prevents data loss during step navigation.</li>
+            <li>• <strong class="text-white">Axios Interceptors:</strong> Global Authorization header injection and centralized HTTP 401/403/422 error handlers.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Backend Architecture -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">Backend Engineering</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Laravel 13 REST API & Eloquent ORM</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Core Controllers</h3>
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800"><strong class="text-white">AuthController:</strong> Registration, login, and in-place applyForSeller verification.</div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800"><strong class="text-white">SellerPropertyDraftController:</strong> 5-step draft intake, gallery upload, and permissions.</div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800"><strong class="text-white">LawyerController:</strong> Calendar availability, consultation booking, deed audit reviews.</div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800"><strong class="text-white">AdminUserController:</strong> Seller identity approvals, draft moderation, revenue metrics.</div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Data Modeling & Security</h3>
+          <ul class="text-xs text-slate-300 space-y-3">
+            <li>• <strong class="text-white">Eloquent Eager Loading:</strong> Eliminates N+1 query overhead by pre-loading seller and inquiry relations.</li>
+            <li>• <strong class="text-white">Protected Storage Isolation:</strong> National Identity Cards and deeds stored in non-public storage with authenticated proxy streaming.</li>
+            <li>• <strong class="text-white">Idempotent Migrations:</strong> Automated, repeatable schema evolution across development and production environments.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: Unified Single Account Innovation -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-amber-400 tracking-wider uppercase mb-1">Major Innovation</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Unified Single-Account Dynamic Role Switching</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-red-950/20 border border-red-800/40 space-y-4">
+          <h3 class="text-sm font-bold text-red-400 uppercase tracking-wider">Legacy Multi-Account Problem</h3>
+          <ul class="text-xs text-slate-300 space-y-3">
+            <li>• Rigid <code class="text-red-300 bg-red-950 px-1 py-0.5 rounded">role</code> enum ('buyer', 'seller', 'lawyer') locked 1 user to 1 fixed role.</li>
+            <li>• When a buyer visited 'Sell', redirected to registration — which failed due to duplicate email database constraint.</li>
+            <li>• Lawyers were trapped inside LawyerDashboard with hidden navbars, unable to browse or bookmark properties.</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-emerald-950/20 border border-emerald-800/40 space-y-4">
+          <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Newly Engineered Unified Architecture</h3>
+          <ul class="text-xs text-slate-300 space-y-3">
+            <li>• Decoupled selling privileges into a <code class="text-emerald-300 bg-emerald-950 px-1 py-0.5 rounded">seller_status</code> enum ('none', 'pending', 'active').</li>
+            <li>• Developed in-place <code class="text-emerald-300 bg-emerald-950 px-1 py-0.5 rounded">POST /api/user/apply-seller</code> endpoint allowing buyers to apply without logging out.</li>
+            <li>• Dynamic 1-click Navbar Mode Switcher pills (<span class="text-amber-300">🛒 Buyer</span>, <span class="text-emerald-300">🏷️ Seller</span>, <span class="text-blue-300">⚖️ Lawyer</span>).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: LegalTech Workflow -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">LegalTech Integration</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Deed Verification & Attorney Consultations</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <div class="text-xs font-bold text-amber-400 mb-1">01. Deed Upload Vault</div>
+          <h3 class="text-sm font-bold text-white mb-2">Document Submission</h3>
+          <p class="text-xs text-slate-300">Sellers upload title deeds, survey plans, and street line certificates into protected storage.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <div class="text-xs font-bold text-blue-400 mb-1">02. Attorney Audit</div>
+          <h3 class="text-sm font-bold text-white mb-2">Legal Screening</h3>
+          <p class="text-xs text-slate-300">Attorneys audit Land Registry volume/folio extracts and record clearance notes in the audit log.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <div class="text-xs font-bold text-emerald-400 mb-1">03. Trust Badging</div>
+          <h3 class="text-sm font-bold text-white mb-2">Certified Badge</h3>
+          <p class="text-xs text-slate-300">Properties receive official 'KNW Certified Deed Verified' badge, assuring prospective buyers of title safety.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: Commercial Operations -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-amber-400 tracking-wider uppercase mb-1">Business Logic</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Monetization, Inquiries & Admin Moderation</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Monetization & Inquiries</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Listing Tiers:</strong> Basic (30-day listing), Verified (attorney deed audit included), and Featured (carousel priority).</li>
+            <li>• <strong class="text-white">PayHere Payment Gateway:</strong> Automated checkout with cryptographic MD5 signature verification.</li>
+            <li>• <strong class="text-white">Bank Deposit Fallback:</strong> Allows sellers to upload bank deposit slips for administrative audit.</li>
+            <li>• <strong class="text-white">Site Visit Scheduling:</strong> Buyers book physical property walkthroughs with automated status notifications.</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-blue-400 uppercase tracking-wider">Administrative Governance</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Seller Identity Moderation:</strong> Inspects uploaded NIC/Passport documents in private storage.</li>
+            <li>• <strong class="text-white">Listing Quality Control:</strong> Screens photo galleries, validates prices, and toggles published marketplace visibility.</li>
+            <li>• <strong class="text-white">Payment Slip Auditing:</strong> Confirms bank transfers before activating listing monetization tiers.</li>
+            <li>• <strong class="text-white">Executive KPI Analytics:</strong> Real-time statistics on registered users, active properties, and revenue.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: SDLC & QA -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">Quality Assurance</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Software Development Lifecycle & Testing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Agile Methodology</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Scrum Framework:</strong> 2-week sprint cadences, daily standups (09:30 AM), and sprint retrospectives.</li>
+            <li>• <strong class="text-white">GitFlow Branching:</strong> Main, develop, and feature-specific branches with mandatory PR reviews.</li>
+            <li>• <strong class="text-white">Continuous Building:</strong> Vite production build compiles in 5.16s with chunk splitting and minification.</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Testing Strategy</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Unit & Controller Testing:</strong> PHPUnit test cases verifying FormRequests and Eloquent models.</li>
+            <li>• <strong class="text-white">API Regression Testing:</strong> Postman collection covering 28 RESTful endpoints.</li>
+            <li>• <strong class="text-white">Cross-Browser Testing:</strong> Verified across Google Chrome, Firefox, Microsoft Edge, and Safari iOS/macOS.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: Technical Challenges -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-purple-400 tracking-wider uppercase mb-1">Problem Solving</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Key Engineering Challenges & Solutions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <h3 class="text-xs font-bold text-amber-400 uppercase mb-1">Challenge 1: Duplicate Email Collision</h3>
+          <p class="text-xs text-slate-300"><strong class="text-white">Solution:</strong> Decoupled seller rights from authentication via seller_status column and in-place applyForSeller API.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <h3 class="text-xs font-bold text-blue-400 uppercase mb-1">Challenge 2: Lawyer Workspace Isolation</h3>
+          <p class="text-xs text-slate-300"><strong class="text-white">Solution:</strong> Built bidirectional cross-navigation in Navbar and dashboards, allowing lawyers to browse as buyers freely.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <h3 class="text-xs font-bold text-emerald-400 uppercase mb-1">Challenge 3: Document Privacy & Leaks</h3>
+          <p class="text-xs text-slate-300"><strong class="text-white">Solution:</strong> Isolated NIC files and deeds in private storage disk with authenticated administrative proxy routes.</p>
+        </div>
+        <div class="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+          <h3 class="text-xs font-bold text-purple-400 uppercase mb-1">Challenge 4: Client State Desynchronization</h3>
+          <p class="text-xs text-slate-300"><strong class="text-white">Solution:</strong> Implemented refreshUser() in AuthContext to synchronize React state with localStorage on role changes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: Competencies & Future Scope -->
+    <div class="slide flex-col justify-center">
+      <div class="text-xs font-semibold text-emerald-400 tracking-wider uppercase mb-1">Growth & Evolution</div>
+      <h2 class="text-3xl font-black text-white tracking-tight mb-8">Competencies Acquired & Future Scope</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Core Competencies</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Full-Stack Mastery:</strong> PHP 8.4, Laravel 13, React 18, Vite, and MySQL 3NF modeling.</li>
+            <li>• <strong class="text-white">Architectural Problem Solving:</strong> Diagnosing identity bottlenecks and engineering unified role switching.</li>
+            <li>• <strong class="text-white">Enterprise Security:</strong> Bcrypt hashing, private disk isolation, RBAC, and FormRequest validations.</li>
+            <li>• <strong class="text-white">Professional Practices:</strong> Agile Scrum, GitFlow version control, and interdisciplinary collaboration.</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Future Scalability Roadmap</h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong class="text-white">Automated OCR Extraction:</strong> Auto-scanning National Identity Cards for instant verification.</li>
+            <li>• <strong class="text-white">Bidirectional WebSockets:</strong> Upgrading inquiry notifications via Laravel Reverb.</li>
+            <li>• <strong class="text-white">Cross-Platform Mobile Apps:</strong> React Native apps sharing the existing Laravel REST API.</li>
+            <li>• <strong class="text-white">GIS Boundary Mapping:</strong> Interactive cadastral land boundary overlays via Leaflet / Mapbox.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 15: Conclusion & Q&A -->
+    <div class="slide flex-col justify-center items-center text-center py-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold tracking-wide uppercase mb-6">
+        Module IT3901 Successfully Completed
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">
+        Thank You!
+      </h2>
+      <p class="text-base text-slate-300 max-w-2xl font-light mb-10 leading-relaxed">
+        Sincere appreciation to Lanka Nippon BizTech Institute, my internal supervisors, and KNW PRO Realtor engineering mentors for their guidance throughout this industrial journey.
+      </p>
+
+      <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-md w-full text-center shadow-xl">
+        <p class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Defense Session</p>
+        <p class="text-lg font-bold text-white mb-2">Questions & Answers</p>
+        <p class="text-xs text-slate-400">Open for feedback and evaluation from the examination panel.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Speaker Notes Drawer (Togglable) -->
+  <aside id="notesDrawer" class="hidden border-t border-slate-800 bg-slate-950 px-6 py-4 max-w-7xl w-full mx-auto">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+        🎙️ Speaker Notes (What to Say)
+      </span>
+      <button onclick="toggleNotes()" class="text-slate-500 hover:text-slate-300 text-xs">✕ Close</button>
+    </div>
+    <p id="speakerNotesText" class="text-xs text-slate-300 leading-relaxed bg-slate-900/60 p-3 rounded-xl border border-slate-800/80">
+      Welcome everyone. Good morning respected lecturers and evaluation panel members...
+    </p>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/60 bg-slate-950/60 px-6 py-3 text-center text-xs text-slate-400 flex items-center justify-between">
+    <span>KNW PRO Realtor (Private) Limited • IT Division</span>
+    <span>Use ◀ / ▶ Arrow Keys to navigate slides</span>
+    <span>LNBTI Higher Diploma in Software Engineering</span>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const notes = [
+      "Welcome everyone. Good morning respected lecturers and evaluation panel members. Today, I am proud to present my Industrial Training project: 'KNW PRO Realtor' — an enterprise-grade digital property trading, title deed verification, and legal advisory platform developed during my six-month internship at KNW PRO Realtor (Pvt) Ltd in Colombo.",
+      "Here is the roadmap for today's presentation. I have structured our walkthrough into four segments: First, the background of our host enterprise and industry problems. Second, the full-stack architecture connecting React, Laravel, and MySQL. Third, our major functional achievements including unified role switching and deed verification. And finally, testing, security, and my professional growth.",
+      "Let me introduce my host organization. KNW PRO Realtor (Private) Limited is a leading real estate brokerage and land consultancy enterprise in Sri Lanka. My internship placement was within their in-house IT & Digital Systems Department, working in Agile Scrum with two-week sprints, peer reviews, and direct collaboration with licensed conveyancers.",
+      "Why did we build KNW PRO Realtor? The Sri Lankan real estate industry suffers from three severe problems: First, rampant title deed fraud. Second, lack of pre-listing legal screening. And third, legacy platforms force users to maintain separate accounts with multiple email addresses if they want to both buy and sell property.",
+      "Our solution is KNW PRO Realtor — designed around six core pillars: A Unified Single Identity, Verified Deed Guarantee, 5-step intake with valuation calculators, a dedicated Buyer Engagement Hub, a LegalTech portal with automated iCalendar scheduling, and an Administrative Governance Dashboard.",
+      "Examining the architecture: We selected a decoupled three-tier client-server architecture. Tier 1 is the Single Page Application built with React 18 and Vite. Tier 2 is our REST API built with PHP 8.4 on Laravel 13. Tier 3 is our relational MySQL database normalized to Third Normal Form.",
+      "On the frontend: our React application eliminates prop-drilling with three specialized global context providers: AuthContext, LanguageContext (i18n), and CurrencyContext. We also implemented search input debouncing and centralized form reducers to preserve draft states.",
+      "On the backend, Laravel 13 organizes business logic across dedicated RESTful controllers. FormRequests enforce validation before controller execution, Eloquent ORM manages relationships with eager-loading, and sensitive identity files are stored in an isolated private disk.",
+      "This slide highlights our major architectural innovation. We completely replaced the legacy multi-account restriction with a decoupled `seller_status` column and in-place verification API. Now, any registered user can toggle between Buyer Mode, Seller Mode, and Lawyer Mode in 1 click from the navigation bar.",
+      "Here is our six-step LegalTech verification workflow: Deeds and survey plans are submitted into our secure vault, licensed attorneys audit Land Registry extracts, and only cleared properties receive the verified badge. Buyers can schedule video consultations with automated .ics calendar invites.",
+      "Slide 11 demonstrates our commercial operations: a three-tier monetization model with PayHere payment gateway integration and bank deposit fallback, buyer site visit requests, and the centralized Admin Dashboard for seller document moderation.",
+      "Software engineering rigor was maintained throughout. We followed Agile Scrum with GitFlow branching and peer code reviews. Our testing encompassed PHPUnit unit tests, Postman API collections, and cross-browser responsive audits.",
+      "Every complex project presents technical hurdles. We resolved duplicate email collision, broke lawyer workspace isolation with bidirectional cross-navigation, eliminated document leak vulnerabilities with private storage, and fixed client-side state desynchronization.",
+      "Reflecting on this training experience: I gained profound growth across full-stack development, architectural refactoring, and enterprise security. Looking forward, we have identified future scalability avenues including automated OCR scanning and real-time WebSockets.",
+      "In conclusion, the six-month industrial training program at KNW PRO Realtor has successfully delivered a robust, secure, and production-ready platform. I express my deepest gratitude to my academic supervisors at LNBTI and mentors at KNW PRO Realtor. Thank you, and I welcome your questions."
+    ];
+
+    let currentSlide = 0;
+
+    function updateSlide() {
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentSlide);
+      });
+      document.getElementById('currentSlideNum').textContent = String(currentSlide + 1).padStart(2, '0');
+      document.getElementById('totalSlidesNum').textContent = String(slides.length).padStart(2, '0');
+      document.getElementById('speakerNotesText').textContent = notes[currentSlide] || "No notes available.";
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function toggleNotes() {
+      const drawer = document.getElementById('notesDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        toggleNotes();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+
+    updateSlide();
+  </script>
+</body>
+</html>

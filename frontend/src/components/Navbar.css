@@ -1,0 +1,262 @@
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  background: #fff; border-bottom: 1px solid var(--gray-100);
+  box-shadow: var(--shadow-sm);
+}
+.navbar__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 66px;
+}
+.navbar__logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 18px; font-weight: 600; color: var(--gray-900);
+}
+.navbar__logo-icon {
+  width: 38px; height: 38px; border-radius: var(--radius-md);
+  background: var(--green-500); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+}
+.navbar__logo-text { letter-spacing: -0.3px; }
+
+.navbar__links { display: flex; align-items: center; gap: 28px; }
+.navbar__link {
+  font-size: 14px; font-weight: 500; color: var(--gray-500);
+  transition: color 0.15s; background: none; border: none;
+  cursor: pointer; font-family: inherit; padding: 0;
+}
+.navbar__link:hover { color: var(--green-700); }
+.navbar__link--active { color: var(--green-700) !important; }
+.navbar__lang { color: var(--green-700) !important; font-weight: 600; }
+.navbar__lang-select {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  background: var(--gray-50);
+  color: var(--green-700);
+  font-size: 13px;
+  font-weight: 700;
+  min-height: 34px;
+  padding: 6px 10px;
+}
+.navbar__lang-select--mobile {
+  width: 100%;
+  margin: 8px 0;
+}
+.navbar__logo { background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
+
+.navbar__actions { display: flex; align-items: center; gap: 10px; }
+.navbar__signin {
+  background: transparent; border: 1px solid var(--gray-200);
+  color: var(--gray-700); padding: 8px 16px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 500; transition: border-color 0.15s, color 0.15s;
+}
+.navbar__signin:hover { border-color: var(--green-500); color: var(--green-700); }
+
+/* Register button */
+.navbar__register-btn {
+  background: var(--green-50); color: var(--green-700);
+  border: 1px solid var(--green-500);
+  padding: 8px 16px; border-radius: var(--radius-md);
+  font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+  transition: background 0.15s;
+}
+.navbar__register-btn:hover { background: var(--green-100); }
+
+/* Logged-in user */
+.navbar__user-wrap { position: relative; }
+.navbar__user-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: transparent; border: 1px solid var(--gray-200);
+  padding: 5px 12px 5px 5px; border-radius: 30px; cursor: pointer; font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.navbar__user-btn:hover { border-color: var(--green-500); background: var(--green-50); }
+
+.navbar__avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--green-500); color: #fff;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.navbar__avatar--lg { width: 38px; height: 38px; font-size: 16px; }
+.navbar__user-name { font-size: 13px; font-weight: 500; color: var(--gray-700); }
+
+/* Dropdown */
+.navbar__dropdown {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: #fff; border: 1px solid var(--gray-100);
+  border-radius: 14px; width: 260px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+  z-index: 300; overflow: hidden;
+  animation: dropIn 0.15s ease;
+}
+@keyframes dropIn { from { opacity: 0; transform: translateY(-6px) } to { opacity: 1; transform: none } }
+
+.navbar__drop-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 10px;
+}
+.navbar__drop-name { font-size: 13px; font-weight: 600; color: var(--gray-900); }
+.navbar__drop-email { font-size: 11px; color: var(--gray-500); margin-top: 1px; }
+.navbar__drop-role {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  background: var(--green-50); color: var(--green-700);
+  padding: 2px 8px; border-radius: 10px; margin-top: 4px; text-transform: capitalize;
+}
+.navbar__drop-divider { height: 1px; background: var(--gray-100); margin: 4px 0; }
+.navbar__drop-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 10px 14px; font-size: 13px; font-weight: 500;
+  color: var(--gray-700); cursor: pointer; font-family: inherit;
+  background: transparent; border: none; width: 100%; text-align: left;
+  text-decoration: none; transition: background 0.12s;
+}
+.navbar__drop-item:hover { background: var(--gray-50); color: var(--gray-900); }
+.navbar__drop-logout { color: #A32D2D; }
+.navbar__drop-logout:hover { background: #FCEBEB; }
+
+.navbar__drop-backdrop {
+  position: fixed; inset: 0; z-index: 299;
+}
+.navbar__mobile-greeting {
+  font-size: 14px; font-weight: 500; color: var(--gray-700); padding: 4px 0;
+}
+
+/* Hamburger */
+.navbar__hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; padding: 6px;
+}
+.navbar__hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--gray-700); border-radius: 2px;
+}
+.navbar__mobile {
+  background: #fff; border-top: 1px solid var(--gray-100);
+  padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 4px;
+}
+.navbar__mobile-link {
+  font-size: 15px; font-weight: 500; color: var(--gray-700);
+  padding: 10px 0; border-bottom: 1px solid var(--gray-100);
+}
+.navbar__mobile-actions {
+  display: flex; gap: 10px; padding-top: 14px;
+}
+
+@media (max-width: 900px) {
+  .navbar__links { display: none; }
+  .navbar__actions { display: none; }
+  .navbar__hamburger { display: flex; }
+}
+
+/* Lawyer Profile Mode: Always show notification bell & profile cleanly */
+.navbar--lawyer .navbar__actions {
+  display: flex !important;
+}
+
+.navbar__portal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+  padding: 4px 11px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  letter-spacing: -0.2px;
+}
+
+/* Account Mode Switcher in Navbar */
+.navbar__mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--green-50);
+  color: var(--green-700);
+  border: 1px solid var(--green-200);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 12px;
+  margin-left: 2px;
+}
+.navbar__mode-badge--seller {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+.navbar__mode-badge--lawyer {
+  background: #eff6ff;
+  color: #1e40af;
+  border-color: #bfdbfe;
+}
+.navbar__mode-badge--admin {
+  background: #f3e8ff;
+  color: #6b21a8;
+  border-color: #e9d5ff;
+}
+
+.navbar__role-switcher {
+  padding: 10px 14px 12px;
+  background: #f9fafb;
+  border-bottom: 1px solid var(--gray-100);
+}
+.navbar__role-switcher-title {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 7px;
+}
+.navbar__role-pills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.navbar__role-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: #fff;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+.navbar__role-pill:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-300);
+  color: var(--gray-900);
+}
+.navbar__role-pill--active {
+  background: var(--green-600) !important;
+  color: #fff !important;
+  border-color: var(--green-600) !important;
+  box-shadow: 0 2px 6px rgba(22, 101, 52, 0.25);
+}
+.navbar__role-pill--active.navbar__role-pill--lawyer {
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+}
+.navbar__role-pill--active.navbar__role-pill--seller {
+  background: #d97706 !important;
+  border-color: #d97706 !important;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
+}
+.navbar__role-pill--active.navbar__role-pill--admin {
+  background: #7c3aed !important;
+  border-color: #7c3aed !important;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+}

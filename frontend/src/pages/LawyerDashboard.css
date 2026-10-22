@@ -1,0 +1,135 @@
+.lawyer-shell textarea {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  color: var(--gray-900);
+  min-height: 80px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.lawyer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.lawyer-panel {
+  min-width: 0;
+}
+
+.lawyer-check {
+  align-items: center !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+  text-transform: none;
+}
+
+.lawyer-check input {
+  min-height: auto;
+}
+
+.lawyer-section {
+  margin-bottom: 18px;
+}
+
+.lawyer-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lawyer-card {
+  align-items: center;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-sm);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 13px;
+}
+
+.lawyer-card strong,
+.lawyer-card span {
+  display: block;
+}
+
+.lawyer-card strong {
+  color: var(--gray-900);
+  font-size: 14px;
+}
+
+.lawyer-card span,
+.lawyer-card p {
+  color: var(--gray-500);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.lawyer-card > button {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--gray-700);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 10px;
+}
+
+.lawyer-appointment-tools {
+  display: grid;
+  gap: 10px;
+  min-width: min(100%, 420px);
+}
+
+.lawyer-reschedule {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.lawyer-reschedule input {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  color: var(--gray-900);
+  font-size: 12px;
+  min-height: 36px;
+  padding: 7px 9px;
+}
+
+.lawyer-reschedule input[placeholder] {
+  grid-column: 1 / -1;
+}
+
+.lawyer-reschedule button {
+  background: #fff;
+  border: 1px solid var(--green-200);
+  border-radius: var(--radius-sm);
+  color: var(--green-700);
+  font-size: 12px;
+  font-weight: 700;
+  grid-column: 1 / -1;
+  min-height: 36px;
+  padding: 7px 9px;
+}
+
+.lawyer-reschedule button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .lawyer-grid,
+  .lawyer-card {
+    grid-template-columns: 1fr;
+  }
+
+  .lawyer-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lawyer-appointment-tools {
+    width: 100%;
+  }
+}
